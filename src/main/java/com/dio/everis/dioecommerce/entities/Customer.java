@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "CUSTOMERS")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,9 @@ public class Customer {
     @ElementCollection
     @CollectionTable(name = "PHONE")
     private Set<String> phones;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
     public Customer(Long id, String name, String email, String cpfOrCnpj, CustomerType customerType) {
         this.id = id;
