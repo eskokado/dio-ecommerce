@@ -32,7 +32,7 @@ public class Customer {
     private List<Address> addresses;
 
     @ElementCollection
-    @CollectionTable(name = "PHONE")
+    @CollectionTable(name = "PHONES")
     private Set<String> phones;
 
     @OneToMany(mappedBy = "customer")

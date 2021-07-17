@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "PAYMENT_SLIP")
+@Table(name = "PAYMENTS_SLIPS")
 public class PaymentSlip extends Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 

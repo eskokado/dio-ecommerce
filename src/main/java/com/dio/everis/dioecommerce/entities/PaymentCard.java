@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "PAYMENT_CARD")
+@Table(name = "PAYMENTS_CARDS")
 public class PaymentCard extends Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 
