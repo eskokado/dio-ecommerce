@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -31,4 +35,11 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
     private Payment payment;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items;
+
+    public List<Product> getProducts() {
+        return getItems().stream().map(OrderItem::getProduct).collect(Collectors.toList());
+    }
 }
