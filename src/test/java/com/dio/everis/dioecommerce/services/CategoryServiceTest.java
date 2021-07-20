@@ -23,7 +23,7 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @Data
 @ExtendWith(MockitoExtension.class)
@@ -145,5 +145,22 @@ public class CategoryServiceTest {
         List<CategoryDTO> listCategoryDTO = categoryService.findAll();
 
         assertThat(listCategoryDTO, is(empty()));
+    }
+
+    @Test
+    void whenExclusionIsCalledWithValidIdThenACategoryShouldBeDeleted() {
+        // given
+        CategoryDTO expectedCategoryDTO = CategoryDTOBuilder.builder().build().toCategoryDTO();
+        Category expectedCategory = categoryMapper.toModel(expectedCategoryDTO);
+
+        //  when
+        when(categoryRepository.findById(VALID_CATEGORY_ID)).thenReturn(Optional.of(expectedCategory));
+        doNothing().when(categoryRepository).deleteById(VALID_CATEGORY_ID);
+
+        // then
+        categoryService.delete(VALID_CATEGORY_ID);
+
+        verify(categoryRepository, times(1)).findById(VALID_CATEGORY_ID);
+        verify(categoryRepository, times(1)).deleteById(VALID_CATEGORY_ID);
     }
 }
