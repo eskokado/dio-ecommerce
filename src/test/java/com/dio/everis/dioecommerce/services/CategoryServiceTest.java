@@ -6,6 +6,7 @@ import com.dio.everis.dioecommerce.entities.Category;
 import com.dio.everis.dioecommerce.mappers.CategoryMapper;
 import com.dio.everis.dioecommerce.repositories.CategoryRepository;
 import com.dio.everis.dioecommerce.services.exceptions.ObjectAlreadyRegisteredException;
+import com.dio.everis.dioecommerce.services.exceptions.ObjectNotFoundException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -81,5 +82,12 @@ public class CategoryServiceTest {
         assertThat(foundCategoryDTO, is(equalTo(expectedCategoryDTO)));
     }
 
+    @Test
+    void whenNotRegisteredCategoryIdGivenThenThrowAnException() {
+        // when
+        when(categoryRepository.findById(INVALID_CATEGORY_ID)).thenReturn(Optional.empty());
 
+        // then
+        assertThrows(ObjectNotFoundException.class, () -> categoryService.find(INVALID_CATEGORY_ID));
+    }
 }
