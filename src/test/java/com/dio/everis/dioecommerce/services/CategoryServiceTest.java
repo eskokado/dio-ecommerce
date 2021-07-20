@@ -90,4 +90,20 @@ public class CategoryServiceTest {
         // then
         assertThrows(ObjectNotFoundException.class, () -> categoryService.find(INVALID_CATEGORY_ID));
     }
+
+    @Test
+    void whenUpdateIsCalledWithValidCategoryGivenThenReturnACategoryUpdated() {
+        // given
+        CategoryDTO expectedCategoryDTO = CategoryDTOBuilder.builder().build().toCategoryDTO();
+        Category expectedCategory = categoryMapper.toModel(expectedCategoryDTO);
+
+        // when
+        when(categoryRepository.findById(VALID_CATEGORY_ID)).thenReturn(Optional.of(expectedCategory));
+        when(categoryRepository.save(expectedCategory)).thenReturn(expectedCategory);
+
+        // then
+        CategoryDTO updateCategoryDTO = categoryService.update(expectedCategoryDTO);
+
+        assertThat(updateCategoryDTO, is(equalTo(expectedCategoryDTO)));
+    }
 }
