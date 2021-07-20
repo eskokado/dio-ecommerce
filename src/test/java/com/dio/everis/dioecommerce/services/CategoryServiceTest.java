@@ -16,11 +16,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -117,5 +118,21 @@ public class CategoryServiceTest {
 
         // then
         assertThrows(ObjectNotFoundException.class, () -> categoryService.update(expectedCategoryDTO));
+    }
+
+    @Test
+    void whenListCategoryIsCalledThenReturnAListOfCategory() {
+        // given
+        CategoryDTO expectedCategoryDTO = CategoryDTOBuilder.builder().build().toCategoryDTO();
+        Category expectedCategory = categoryMapper.toModel(expectedCategoryDTO);
+
+        // when
+        when(categoryRepository.findAll()).thenReturn(Collections.singletonList(expectedCategory));
+
+        // then
+        List<CategoryDTO> listCategoryDTO = categoryService.findAll();
+
+        assertThat(listCategoryDTO, is(not(empty())));
+        assertThat(listCategoryDTO.get(0), is(equalTo(expectedCategoryDTO)));
     }
 }
