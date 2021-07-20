@@ -66,4 +66,20 @@ public class CategoryServiceTest {
         assertThrows(ObjectAlreadyRegisteredException.class, () -> categoryService.insert(expectedCategoryDTO));
     }
 
+    @Test
+    void whenValidCategoryIdIsGivenThenReturnAnCategory() {
+        // given
+        CategoryDTO expectedCategoryDTO = CategoryDTOBuilder.builder().build().toCategoryDTO();
+        Category expectedCategory = categoryMapper.toModel(expectedCategoryDTO);
+
+        // when
+        when(categoryRepository.findById(VALID_CATEGORY_ID)).thenReturn(Optional.of(expectedCategory));
+
+        // then
+        CategoryDTO foundCategoryDTO = categoryService.find(VALID_CATEGORY_ID);
+
+        assertThat(foundCategoryDTO, is(equalTo(expectedCategoryDTO)));
+    }
+
+
 }
