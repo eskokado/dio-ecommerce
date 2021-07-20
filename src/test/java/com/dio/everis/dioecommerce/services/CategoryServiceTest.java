@@ -163,4 +163,13 @@ public class CategoryServiceTest {
         verify(categoryRepository, times(1)).findById(VALID_CATEGORY_ID);
         verify(categoryRepository, times(1)).deleteById(VALID_CATEGORY_ID);
     }
+
+    @Test
+    void whenExclusionIsCalledWithNotExistingCategoryThenAnExceptionShouldBeThrown() {
+        // when
+        when(categoryRepository.findById(INVALID_CATEGORY_ID)).thenReturn(Optional.empty());
+
+        // then
+        assertThrows(ObjectNotFoundException.class, () -> categoryService.delete(INVALID_CATEGORY_ID));
+    }
 }
