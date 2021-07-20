@@ -10,7 +10,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -38,6 +40,10 @@ public class CategoryService {
         Category objToSave = categoryMapper.toModel(objDto);
         Category objSaved = categoryRepository.save(objToSave);
         return categoryMapper.toDto(objSaved);
+    }
+
+    public List<CategoryDTO> findAll() {
+        return categoryRepository.findAll().stream().map(categoryMapper::toDto).collect(Collectors.toList());
     }
 
     private void verifyIfIsAlreadyRegistered(Long id) {
