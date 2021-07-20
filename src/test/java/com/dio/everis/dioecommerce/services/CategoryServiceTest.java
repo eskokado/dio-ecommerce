@@ -135,4 +135,15 @@ public class CategoryServiceTest {
         assertThat(listCategoryDTO, is(not(empty())));
         assertThat(listCategoryDTO.get(0), is(equalTo(expectedCategoryDTO)));
     }
+
+    @Test
+    void whenListCategoryIsCalledThenReturnAnEmptyListOfCategory() {
+        // when
+        when(categoryRepository.findAll()).thenReturn(Collections.emptyList());
+
+        // then
+        List<CategoryDTO> listCategoryDTO = categoryService.findAll();
+
+        assertThat(listCategoryDTO, is(empty()));
+    }
 }
