@@ -106,4 +106,16 @@ public class CategoryServiceTest {
 
         assertThat(updateCategoryDTO, is(equalTo(expectedCategoryDTO)));
     }
+
+    @Test
+    void whenUpdateIsCalledWithNotExistingCategoryThenAnExceptionShouldBeThrown() {
+        // given
+        CategoryDTO expectedCategoryDTO = CategoryDTOBuilder.builder().build().toCategoryDTO();
+
+        // when
+        when(categoryRepository.findById(VALID_CATEGORY_ID)).thenReturn(Optional.empty());
+
+        // then
+        assertThrows(ObjectNotFoundException.class, () -> categoryService.update(expectedCategoryDTO));
+    }
 }
