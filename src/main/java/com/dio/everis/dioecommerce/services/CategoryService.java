@@ -4,10 +4,12 @@ import com.dio.everis.dioecommerce.dto.CategoryDTO;
 import com.dio.everis.dioecommerce.entities.Category;
 import com.dio.everis.dioecommerce.mappers.CategoryMapper;
 import com.dio.everis.dioecommerce.repositories.CategoryRepository;
+import com.dio.everis.dioecommerce.services.exceptions.DataIntegrityException;
 import com.dio.everis.dioecommerce.services.exceptions.ObjectAlreadyRegisteredException;
 import com.dio.everis.dioecommerce.services.exceptions.ObjectNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,6 +54,15 @@ public class CategoryService {
             throw new ObjectAlreadyRegisteredException(
                     "Objeto existente! Id: " + id + ", Tipo: " + Category.class.getName()
             );
+        }
+    }
+
+    public void delete(Long id) {
+        find(id);
+        try {
+            categoryRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Não é possível excluir uma categoria que possui dependências");
         }
     }
 }
