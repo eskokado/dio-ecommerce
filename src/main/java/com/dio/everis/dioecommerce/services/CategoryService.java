@@ -33,6 +33,13 @@ public class CategoryService {
         return categoryMapper.toDto(obj);
     }
 
+    public CategoryDTO update(CategoryDTO objDto) {
+        find(objDto.getId());
+        Category objToSave = categoryMapper.toModel(objDto);
+        Category objSaved = categoryRepository.save(objToSave);
+        return categoryMapper.toDto(objSaved);
+    }
+
     private void verifyIfIsAlreadyRegistered(Long id) {
         Optional<Category> optObj = categoryRepository.findById(id);
         if (optObj.isPresent()) {
