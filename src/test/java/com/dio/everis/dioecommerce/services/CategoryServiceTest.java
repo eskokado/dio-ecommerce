@@ -5,6 +5,7 @@ import com.dio.everis.dioecommerce.dto.CategoryDTO;
 import com.dio.everis.dioecommerce.entities.Category;
 import com.dio.everis.dioecommerce.mappers.CategoryMapper;
 import com.dio.everis.dioecommerce.repositories.CategoryRepository;
+import com.dio.everis.dioecommerce.services.exceptions.ObjectAlreadyRegisteredException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -19,6 +20,7 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @Data
@@ -50,4 +52,18 @@ public class CategoryServiceTest {
 
         assertThat(createdCategoryDTO, is(equalTo(expectedCategoryDTO)));
     }
+
+    @Test
+    void whenAlreadyRegisteredCategoryInformedThenAnExceptionShouldBeThrown() {
+        // given
+        CategoryDTO expectedCategoryDTO = CategoryDTOBuilder.builder().build().toCategoryDTO();
+        Category expectedCategory = categoryMapper.toModel(expectedCategoryDTO);
+
+        // when
+        when(categoryRepository.findById(VALID_CATEGORY_ID)).thenReturn(Optional.of(expectedCategory));
+
+        // then
+        assertThrows(ObjectAlreadyRegisteredException.class, () -> categoryService.insert(expectedCategoryDTO));
+    }
+
 }
