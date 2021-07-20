@@ -25,6 +25,14 @@ public class CategoryService {
         return categoryMapper.toDto(objSaved);
     }
 
+    public CategoryDTO find(Long id) {
+        Category obj = categoryRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(
+                        "Objeto não encontrado! Id: " + id + ", Tipo: " + Category.class.getName()
+                ));
+        return categoryMapper.toDto(obj);
+    }
+
     private void verifyIfIsAlreadyRegistered(Long id) {
         Optional<Category> optObj = categoryRepository.findById(id);
         if (optObj.isPresent()) {
