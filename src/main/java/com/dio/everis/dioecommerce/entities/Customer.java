@@ -46,11 +46,11 @@ public class Customer {
         this.customerType = (customerType==null) ? null : customerType.getCode();
     }
 
-    public CustomerType getCustomerType() {
-        return CustomerType.toEnum(customerType);
-    }
-
-    public void setCustomerType(CustomerType customerType) {
-        this.customerType = customerType.getCode();
-    }
+//    public CustomerType getCustomerType() {
+//        return CustomerType.toEnum(customerType);
+//    }
+//
+//    public void setCustomerType(CustomerType customerType) {
+//        this.customerType = customerType.getCode();
+//    }
 }
