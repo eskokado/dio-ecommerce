@@ -14,5 +14,7 @@ public interface ProductMapper {
     @Mapping(target = "orders", ignore = true)
     Product toModel(ProductDTO productDTO);
 
+    @Mapping(target = "items", ignore = true)
+    @Mapping(target = "orders", ignore = true)
     ProductDTO toDto(Product product);
 }
