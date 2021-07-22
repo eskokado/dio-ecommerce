@@ -1,5 +1,6 @@
 package com.dio.everis.dioecommerce.dto;
 
+import com.dio.everis.dioecommerce.entities.OrderItem;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -28,4 +30,6 @@ public class ProductDTO {
 
     @Size(min = 1, max = 10)
     private List<CategoryDTO> categories;
+
+    private Set<OrderItemDTO> items;
 }
