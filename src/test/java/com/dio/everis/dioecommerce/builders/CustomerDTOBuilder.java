@@ -1,7 +1,9 @@
 package com.dio.everis.dioecommerce.builders;
 
 import com.dio.everis.dioecommerce.dto.AddressDTO;
+import com.dio.everis.dioecommerce.dto.CustomerDTO;
 import com.dio.everis.dioecommerce.dto.CustomerWithoutAddressesDTO;
+import com.dio.everis.dioecommerce.entities.Order;
 import lombok.Builder;
 
 import java.util.Collections;
@@ -25,10 +27,14 @@ public class CustomerDTOBuilder {
     @Builder.Default
     private Integer customerType = 1;
 
+    private List<AddressDTO> addresses;
+
     @Builder.Default
     private Set<String> phones = Collections.singleton("11209938467");
 
-    public CustomerWithoutAddressesDTO toCustomerDTO(){
-        return new CustomerWithoutAddressesDTO(id, name, email, cpfOrCnpj, customerType, phones);
+    private List<Order> orders;
+
+    public CustomerDTO toCustomerDTO(){
+        return new CustomerDTO(id, name, email, cpfOrCnpj, customerType, addresses, phones, orders);
     }
 }

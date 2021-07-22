@@ -1,6 +1,7 @@
 package com.dio.everis.dioecommerce.dto;
 
 import com.dio.everis.dioecommerce.entities.Address;
+import com.dio.everis.dioecommerce.entities.Order;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,4 +39,6 @@ public class CustomerDTO {
 
     @Size(min = 1, max = 5)
     private Set<String> phones;
+
+    private List<Order> orders;
 }

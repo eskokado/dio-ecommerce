@@ -1,5 +1,6 @@
 package com.dio.everis.dioecommerce.services;
 
+import com.dio.everis.dioecommerce.dto.CustomerDTO;
 import com.dio.everis.dioecommerce.dto. CustomerWithoutAddressesDTO ;
 import com.dio.everis.dioecommerce.dto.CustomerWithoutAddressesDTO;
 import com.dio.everis.dioecommerce.entities.Customer;
@@ -23,14 +24,14 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
 
-    public  CustomerWithoutAddressesDTO  insert( CustomerWithoutAddressesDTO  objDTO) {
+    public CustomerDTO insert(CustomerDTO  objDTO) {
         verifyIfIsAlreadyRegistered(objDTO.getId());
         Customer objToSave = customerMapper.toModel(objDTO);
         Customer objSaved = customerRepository.save(objToSave);
         return customerMapper.toDto(objSaved);
     }
 
-    public CustomerWithoutAddressesDTO find(Long id) {
+    public CustomerDTO find(Long id) {
         Customer obj = customerRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(
                         "Objeto não encontrado! Id: " + id + ", Tipo: " + Customer.class.getName()
@@ -38,14 +39,14 @@ public class CustomerService {
         return customerMapper.toDto(obj);
     }
 
-    public  CustomerWithoutAddressesDTO  update( CustomerWithoutAddressesDTO  objDto) {
+    public  CustomerDTO  update(CustomerDTO  objDto) {
         find(objDto.getId());
         Customer objToSave = customerMapper.toModel(objDto);
         Customer objSaved = customerRepository.save(objToSave);
         return customerMapper.toDto(objSaved);
     }
 
-    public List< CustomerWithoutAddressesDTO > findAll() {
+    public List< CustomerDTO > findAll() {
         return customerRepository.findAll().stream().map(customerMapper::toDto).collect(Collectors.toList());
     }
 

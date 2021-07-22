@@ -41,7 +41,7 @@ public class CustomerServiceTest {
     @Test
     void whenCustomerInformedThenItShouldBeCreated() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
         Customer expectedCustomer = customerMapper.toModel(expectedCustomerDTO);
 
         // when
@@ -49,7 +49,7 @@ public class CustomerServiceTest {
         when(customerRepository.save(expectedCustomer)).thenReturn(expectedCustomer);
 
         // then
-        CustomerWithoutAddressesDTO createdCustomerDTO = customerService.insert(expectedCustomerDTO);
+        CustomerDTO createdCustomerDTO = customerService.insert(expectedCustomerDTO);
 
         assertThat(createdCustomerDTO, is(equalTo(expectedCustomerDTO)));
     }
@@ -57,7 +57,7 @@ public class CustomerServiceTest {
     @Test
     void whenAlreadyRegisteredCustomerInformedThenAnExceptionShouldBeThrown() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
         Customer expectedCustomer = customerMapper.toModel(expectedCustomerDTO);
 
         // when
@@ -70,14 +70,14 @@ public class CustomerServiceTest {
     @Test
     void whenValidCustomerIdIsGivenThenReturnAnCustomer() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
         Customer expectedCustomer = customerMapper.toModel(expectedCustomerDTO);
 
         // when
         when(customerRepository.findById(VALID_CUSTOMER_ID)).thenReturn(Optional.of(expectedCustomer));
 
         // then
-        CustomerWithoutAddressesDTO foundCustomerDTO = customerService.find(VALID_CUSTOMER_ID);
+        CustomerDTO foundCustomerDTO = customerService.find(VALID_CUSTOMER_ID);
 
         assertThat(foundCustomerDTO, is(equalTo(expectedCustomerDTO)));
     }
@@ -94,7 +94,7 @@ public class CustomerServiceTest {
     @Test
     void whenUpdateIsCalledWithValidCustomerGivenThenReturnACustomerUpdated() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
         Customer expectedCustomer = customerMapper.toModel(expectedCustomerDTO);
 
         // when
@@ -102,7 +102,7 @@ public class CustomerServiceTest {
         when(customerRepository.save(expectedCustomer)).thenReturn(expectedCustomer);
 
         // then
-        CustomerWithoutAddressesDTO updateCustomerDTO = customerService.update(expectedCustomerDTO);
+        CustomerDTO updateCustomerDTO = customerService.update(expectedCustomerDTO);
 
         assertThat(updateCustomerDTO, is(equalTo(expectedCustomerDTO)));
     }
@@ -110,7 +110,7 @@ public class CustomerServiceTest {
     @Test
     void whenUpdateIsCalledWithNotExistingCustomerThenAnExceptionShouldBeThrown() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
 
         // when
         when(customerRepository.findById(VALID_CUSTOMER_ID)).thenReturn(Optional.empty());
@@ -122,14 +122,14 @@ public class CustomerServiceTest {
     @Test
     void whenListCustomerIsCalledThenReturnAListOfCustomer() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
         Customer expectedCustomer = customerMapper.toModel(expectedCustomerDTO);
 
         // when
         when(customerRepository.findAll()).thenReturn(Collections.singletonList(expectedCustomer));
 
         // then
-        List<CustomerWithoutAddressesDTO> listCustomerDTO = customerService.findAll();
+        List<CustomerDTO> listCustomerDTO = customerService.findAll();
 
         assertThat(listCustomerDTO, is(not(empty())));
         assertThat(listCustomerDTO.get(0), is(equalTo(expectedCustomerDTO)));
@@ -141,7 +141,7 @@ public class CustomerServiceTest {
         when(customerRepository.findAll()).thenReturn(Collections.emptyList());
 
         // then
-        List<CustomerWithoutAddressesDTO> listCustomerDTO = customerService.findAll();
+        List<CustomerDTO> listCustomerDTO = customerService.findAll();
 
         assertThat(listCustomerDTO, is(empty()));
     }
@@ -149,7 +149,7 @@ public class CustomerServiceTest {
     @Test
     void whenExclusionIsCalledWithValidIdThenACustomerShouldBeDeleted() {
         // given
-        CustomerWithoutAddressesDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
+        CustomerDTO expectedCustomerDTO = CustomerDTOBuilder.builder().build().toCustomerDTO();
         Customer expectedCustomer = customerMapper.toModel(expectedCustomerDTO);
 
         //  when
