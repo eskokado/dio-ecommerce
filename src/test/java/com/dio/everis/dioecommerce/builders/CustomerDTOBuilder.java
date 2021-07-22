@@ -2,7 +2,6 @@ package com.dio.everis.dioecommerce.builders;
 
 import com.dio.everis.dioecommerce.dto.AddressDTO;
 import com.dio.everis.dioecommerce.dto.CustomerDTO;
-import com.dio.everis.dioecommerce.dto.CustomerWithoutAddressesDTO;
 import com.dio.everis.dioecommerce.entities.Order;
 import lombok.Builder;
 

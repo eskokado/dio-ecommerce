@@ -1,8 +1,6 @@
 package com.dio.everis.dioecommerce.services;
 
 import com.dio.everis.dioecommerce.dto.CustomerDTO;
-import com.dio.everis.dioecommerce.dto. CustomerWithoutAddressesDTO ;
-import com.dio.everis.dioecommerce.dto.CustomerWithoutAddressesDTO;
 import com.dio.everis.dioecommerce.entities.Customer;
 import com.dio.everis.dioecommerce.mappers.CustomerMapper;
 import com.dio.everis.dioecommerce.repositories.CustomerRepository;
