@@ -36,5 +36,5 @@ public class AddressDTO {
     private CityDTO city;
 
     @NotNull
-    private CustomerWithoutAddressesDTO customer;
+    private CustomerDTO customer;
 }

@@ -27,7 +27,7 @@ public class AddressDTOBuilder {
     private CityDTO city = CityDTOBuilder.builder().build().toCityDTO();
 
     @Builder.Default
-    private CustomerWithoutAddressesDTO customer = CustomerDTOBuilder.builder().build().toCustomerDTO();
+    private CustomerDTO customer = CustomerDTOBuilder.builder().build().toCustomerDTO();
 
     public AddressDTO toAddressDTO(){
         return new AddressDTO(id, publicPlace, number, complement, district, zipCode, city, customer);
