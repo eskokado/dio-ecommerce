@@ -1,5 +1,6 @@
 package com.dio.everis.dioecommerce.dto;
 
+import com.dio.everis.dioecommerce.entities.Order;
 import com.dio.everis.dioecommerce.entities.OrderItem;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -32,4 +33,6 @@ public class ProductDTO {
     private List<CategoryDTO> categories;
 
     private Set<OrderItemDTO> items;
+
+    private List<Order> orders;
 }

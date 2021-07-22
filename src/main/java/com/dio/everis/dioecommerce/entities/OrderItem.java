@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Delegate;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 @Table(name = "ORDERS_ITEMS")
 public class OrderItem {
 
+    @Delegate
     @EmbeddedId
     private OrderItemPK id;
 
@@ -33,11 +35,11 @@ public class OrderItem {
         this.price = price;
     }
 
-    public Order getOrder() {
-        return id.getOrder();
-    }
-
-    public Product getProduct() {
-        return id.getProduct();
-    }
+//    public Order getOrder() {
+//        return id.getOrder();
+//    }
+//
+//    public Product getProduct() {
+//        return id.getProduct();
+//    }
 }

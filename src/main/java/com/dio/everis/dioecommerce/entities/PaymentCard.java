@@ -1,10 +1,7 @@
 package com.dio.everis.dioecommerce.entities;
 
 import com.dio.everis.dioecommerce.enums.PaymentStatus;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -17,6 +14,7 @@ public class PaymentCard extends Payment implements Serializable {
 
     private Integer parcelAmount;
 
+    @Builder
     public PaymentCard(Long id, PaymentStatus paymentStatus, Order order, Integer parcelAmount) {
         super(id, paymentStatus, order);
         this.parcelAmount = parcelAmount;

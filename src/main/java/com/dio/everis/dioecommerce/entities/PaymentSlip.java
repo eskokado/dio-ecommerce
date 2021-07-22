@@ -1,10 +1,7 @@
 package com.dio.everis.dioecommerce.entities;
 
 import com.dio.everis.dioecommerce.enums.PaymentStatus;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -19,6 +16,7 @@ public class PaymentSlip extends Payment implements Serializable {
     private LocalDate dueDate;
     private LocalDate paymentDate;
 
+    @Builder
     public PaymentSlip(Long id, PaymentStatus paymentStatus, Order order,
                        LocalDate dueDate, LocalDate paymentDate) {
         super(id, paymentStatus, order);

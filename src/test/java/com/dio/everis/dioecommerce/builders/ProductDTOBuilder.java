@@ -1,8 +1,10 @@
 package com.dio.everis.dioecommerce.builders;
 
 import com.dio.everis.dioecommerce.dto.CategoryDTO;
+import com.dio.everis.dioecommerce.dto.OrderDTO;
 import com.dio.everis.dioecommerce.dto.OrderItemDTO;
 import com.dio.everis.dioecommerce.dto.ProductDTO;
+import com.dio.everis.dioecommerce.entities.Order;
 import lombok.Builder;
 
 import java.math.BigDecimal;
@@ -25,7 +27,9 @@ public class ProductDTOBuilder {
 
     private Set<OrderItemDTO> items;
 
+    private List<Order> orders;
+
     public ProductDTO toProductDTO(){
-        return new ProductDTO(id, name, price, categories, items);
+        return new ProductDTO(id, name, price, categories, items, orders);
     }
 }
