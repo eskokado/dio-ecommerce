@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Builder
@@ -16,6 +17,13 @@ public class StateDTO {
     private Integer id;
 
     @NotNull
+    @Size(min = 2, max = 2)
+    private String initials;
+
+    @NotNull
     @Size(min = 1, max = 100)
     private String name;
+
+    @NotNull
+    private List<CityDTO> cities;
 }
