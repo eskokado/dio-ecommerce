@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -27,7 +28,7 @@ public class ProductDTO {
     private String name;
 
     @DecimalMin(value = "0.01")
-    @DecimalMin(value = "99999.99")
+    @DecimalMax(value = "99999.99")
     private BigDecimal price;
 
     @Size(min = 1, max = 10)

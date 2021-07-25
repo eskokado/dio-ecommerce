@@ -37,6 +37,8 @@ public class Product {
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items;
 
+    private List<Order> orders;
+
     public List<Order> getOrders() {
         return getItems().stream().map(OrderItem::getOrder).collect(Collectors.toList());
     }

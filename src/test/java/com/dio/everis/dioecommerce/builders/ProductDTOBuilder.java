@@ -23,7 +23,8 @@ public class ProductDTOBuilder {
     @Builder.Default
     private BigDecimal price = BigDecimal.valueOf(15.55);
 
-    private List<CategoryDTO> categories;
+    @Builder.Default
+    private List<CategoryDTO> categories = Collections.singletonList(CategoryDTOBuilder.builder().build().toCategoryDTO());
 
     private Set<OrderItemDTO> items;
 
