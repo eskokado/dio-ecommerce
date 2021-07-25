@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
@@ -15,11 +16,11 @@ import javax.validation.constraints.Size;
 public class CityDTO {
     private Integer id;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 3)
     private String initials;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 100)
     private String name;
 

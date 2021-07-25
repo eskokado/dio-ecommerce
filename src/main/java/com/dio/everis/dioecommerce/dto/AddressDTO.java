@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
@@ -15,20 +16,20 @@ import javax.validation.constraints.Size;
 public class AddressDTO {
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String publicPlace;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 30)
     private String number;
 
     private String complement;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 100)
     private String district;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 30)
     private String zipCode;
 

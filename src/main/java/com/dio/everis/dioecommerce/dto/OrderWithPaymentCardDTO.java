@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -17,7 +18,7 @@ import java.util.List;
 public class OrderWithPaymentCardDTO {
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String instance;
 
     @NotNull

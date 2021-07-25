@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,10 +17,10 @@ public class PaymentSlipDTO {
 
     private Integer paymentStatus;
 
-    @NotNull
+    @NotEmpty
     private String dueDate;
 
-    @NotNull
+    @NotEmpty
     private String paymentDate;
 
     private OrderDTO order;

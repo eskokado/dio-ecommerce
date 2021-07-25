@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -16,11 +17,11 @@ import java.util.List;
 public class StateDTO {
     private Integer id;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 2, max = 2)
     private String initials;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 100)
     private String name;
 

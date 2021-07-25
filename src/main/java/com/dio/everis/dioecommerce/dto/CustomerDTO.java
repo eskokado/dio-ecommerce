@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
@@ -19,15 +20,15 @@ import java.util.Set;
 public class CustomerDTO {
     private Long id;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 150)
     private String name;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 150)
     private String email;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 25)
     private String cpfOrCnpj;
 
