@@ -1,8 +1,6 @@
 package com.dio.everis.dioecommerce.services;
 
 import com.dio.everis.dioecommerce.dto.OrderDTO;
-import com.dio.everis.dioecommerce.dto.OrderWithPaymentCardDTO;
-import com.dio.everis.dioecommerce.dto.OrderWithPaymentSlipDTO;
 import com.dio.everis.dioecommerce.entities.Order;
 import com.dio.everis.dioecommerce.mappers.OrderMapper;
 import com.dio.everis.dioecommerce.repositories.OrderRepository;
@@ -24,18 +22,11 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper = OrderMapper.INSTANCE;
 
-    public OrderWithPaymentCardDTO insert(OrderWithPaymentCardDTO objDTO) {
+    public OrderDTO insert(OrderDTO objDTO) {
         verifyIfIsAlreadyRegistered(objDTO.getId());
         Order objToSave = orderMapper.toModel(objDTO);
         Order objSaved = orderRepository.save(objToSave);
-        return orderMapper.toDtoWithPaymentCard(objSaved);
-    }
-
-    public OrderWithPaymentSlipDTO insert(OrderWithPaymentSlipDTO objDTO) {
-        verifyIfIsAlreadyRegistered(objDTO.getId());
-        Order objToSave = orderMapper.toModel(objDTO);
-        Order objSaved = orderRepository.save(objToSave);
-        return orderMapper.toDtoWithPaymentSlip(objSaved);
+        return orderMapper.toDto(objSaved);
     }
 
     public OrderDTO find(Long id) {
@@ -46,18 +37,11 @@ public class OrderService {
         return orderMapper.toDto(obj);
     }
 
-    public OrderWithPaymentCardDTO update(OrderWithPaymentCardDTO objDto) {
+    public OrderDTO update(OrderDTO objDto) {
         find(objDto.getId());
         Order objToSave = orderMapper.toModel(objDto);
         Order objSaved = orderRepository.save(objToSave);
-        return orderMapper.toDtoWithPaymentCard(objSaved);
-    }
-
-    public OrderWithPaymentSlipDTO update(OrderWithPaymentSlipDTO objDto) {
-        find(objDto.getId());
-        Order objToSave = orderMapper.toModel(objDto);
-        Order objSaved = orderRepository.save(objToSave);
-        return orderMapper.toDtoWithPaymentSlip(objSaved);
+        return orderMapper.toDto(objSaved);
     }
 
     public List<OrderDTO> findAll() {

@@ -4,8 +4,6 @@ import com.dio.everis.dioecommerce.builders.OrderDTOBuilder;
 import com.dio.everis.dioecommerce.builders.OrderWithPaymentCardDTOBuilder;
 import com.dio.everis.dioecommerce.builders.OrderWithPaymentSlipDTOBuilder;
 import com.dio.everis.dioecommerce.dto.OrderDTO;
-import com.dio.everis.dioecommerce.dto.OrderWithPaymentCardDTO;
-import com.dio.everis.dioecommerce.dto.OrderWithPaymentSlipDTO;
 import com.dio.everis.dioecommerce.entities.Order;
 import com.dio.everis.dioecommerce.mappers.OrderMapper;
 import com.dio.everis.dioecommerce.repositories.OrderRepository;
@@ -44,7 +42,7 @@ public class OrderServiceTest {
     @Test
     void whenOrderWithPaymentCardInformedThenItShouldBeCreated() {
         // given
-        OrderWithPaymentCardDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
         Order expectedOrder = orderMapper.toModel(expectedOrderDTO);
 
         // when
@@ -52,7 +50,7 @@ public class OrderServiceTest {
         when(orderRepository.save(expectedOrder)).thenReturn(expectedOrder);
 
         // then
-        OrderWithPaymentCardDTO createdOrderDTO = orderService.insert(expectedOrderDTO);
+        OrderDTO createdOrderDTO = orderService.insert(expectedOrderDTO);
 
         assertThat(createdOrderDTO, is(equalTo(expectedOrderDTO)));
     }
@@ -60,7 +58,7 @@ public class OrderServiceTest {
     @Test
     void whenOrderWithPaymentSlipInformedThenItShouldBeCreated() {
         // given
-        OrderWithPaymentSlipDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
         Order expectedOrder = orderMapper.toModel(expectedOrderDTO);
 
         // when
@@ -68,7 +66,7 @@ public class OrderServiceTest {
         when(orderRepository.save(expectedOrder)).thenReturn(expectedOrder);
 
         // then
-        OrderWithPaymentSlipDTO createdOrderDTO = orderService.insert(expectedOrderDTO);
+        OrderDTO createdOrderDTO = orderService.insert(expectedOrderDTO);
 
         assertThat(createdOrderDTO, is(equalTo(expectedOrderDTO)));
     }
@@ -76,7 +74,7 @@ public class OrderServiceTest {
     @Test
     void whenAlreadyRegisteredOrderWithPaymentCardInformedThenAnExceptionShouldBeThrown() {
         // given
-        OrderWithPaymentCardDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
         Order expectedOrder = orderMapper.toModel(expectedOrderDTO);
 
         // when
@@ -89,7 +87,7 @@ public class OrderServiceTest {
     @Test
     void whenAlreadyRegisteredOrderWithPaymentSlipInformedThenAnExceptionShouldBeThrown() {
         // given
-        OrderWithPaymentSlipDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
         Order expectedOrder = orderMapper.toModel(expectedOrderDTO);
 
         // when
@@ -126,7 +124,7 @@ public class OrderServiceTest {
     @Test
     void whenUpdateIsCalledWithValidOrderWithPaymentCardGivenThenReturnAOrderUpdated() {
         // given
-        OrderWithPaymentCardDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
         Order expectedOrder = orderMapper.toModel(expectedOrderDTO);
 
         // when
@@ -134,7 +132,7 @@ public class OrderServiceTest {
         when(orderRepository.save(expectedOrder)).thenReturn(expectedOrder);
 
         // then
-        OrderWithPaymentCardDTO updateOrderDTO = orderService.update(expectedOrderDTO);
+        OrderDTO updateOrderDTO = orderService.update(expectedOrderDTO);
 
         assertThat(updateOrderDTO, is(equalTo(expectedOrderDTO)));
     }
@@ -142,7 +140,7 @@ public class OrderServiceTest {
     @Test
     void whenUpdateIsCalledWithValidOrderWithPaymentSlipGivenThenReturnAOrderUpdated() {
         // given
-        OrderWithPaymentSlipDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
         Order expectedOrder = orderMapper.toModel(expectedOrderDTO);
 
         // when
@@ -150,7 +148,7 @@ public class OrderServiceTest {
         when(orderRepository.save(expectedOrder)).thenReturn(expectedOrder);
 
         // then
-        OrderWithPaymentSlipDTO updateOrderDTO = orderService.update(expectedOrderDTO);
+        OrderDTO updateOrderDTO = orderService.update(expectedOrderDTO);
 
         assertThat(updateOrderDTO, is(equalTo(expectedOrderDTO)));
     }
@@ -158,7 +156,7 @@ public class OrderServiceTest {
     @Test
     void whenUpdateIsCalledWithNotExistingOrderWithPaymentCardThenAnExceptionShouldBeThrown() {
         // given
-        OrderWithPaymentCardDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentCardDTOBuilder.builder().build().toOrderDTO();
 
         // when
         when(orderRepository.findById(VALID_ORDER_ID)).thenReturn(Optional.empty());
@@ -170,7 +168,7 @@ public class OrderServiceTest {
     @Test
     void whenUpdateIsCalledWithNotExistingOrderWithPaymentSlipThenAnExceptionShouldBeThrown() {
         // given
-        OrderWithPaymentSlipDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
+        OrderDTO expectedOrderDTO = OrderWithPaymentSlipDTOBuilder.builder().build().toOrderDTO();
 
         // when
         when(orderRepository.findById(VALID_ORDER_ID)).thenReturn(Optional.empty());
