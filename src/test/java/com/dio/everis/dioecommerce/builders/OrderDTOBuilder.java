@@ -1,14 +1,9 @@
 package com.dio.everis.dioecommerce.builders;
 
 import com.dio.everis.dioecommerce.dto.*;
-import com.dio.everis.dioecommerce.entities.Order;
 import com.dio.everis.dioecommerce.entities.Payment;
-import com.dio.everis.dioecommerce.entities.PaymentCard;
-import com.dio.everis.dioecommerce.entities.Product;
-import com.dio.everis.dioecommerce.enums.PaymentStatus;
 import lombok.Builder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,12 +21,7 @@ public class OrderDTOBuilder {
     @Builder.Default
     private AddressDTO deliveryAddress = AddressDTOBuilder.builder().build().toAddressDTO();
 
-    @Builder.Default
-    private Payment payment = PaymentCard.builder()
-            .order(Order.builder().build())
-            .parcelAmount(1)
-            .paymentStatus(PaymentStatus.QUITADO)
-            .build();
+    private Payment payment;
 
     @Builder.Default
     private List<OrderItemDTO> items = Collections.singletonList(OrderItemDTOBuilder.builder().build().toOrderItemDTO());

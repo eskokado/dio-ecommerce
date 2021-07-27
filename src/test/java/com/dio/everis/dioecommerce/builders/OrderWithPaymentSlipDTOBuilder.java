@@ -1,9 +1,11 @@
 package com.dio.everis.dioecommerce.builders;
 
 import com.dio.everis.dioecommerce.dto.*;
+import com.dio.everis.dioecommerce.entities.Payment;
 import com.dio.everis.dioecommerce.entities.PaymentSlip;
 import com.dio.everis.dioecommerce.enums.PaymentStatus;
 import lombok.Builder;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -23,18 +25,19 @@ public class OrderWithPaymentSlipDTOBuilder {
     private AddressDTO deliveryAddress = AddressDTOBuilder.builder().build().toAddressDTO();
 
     @Builder.Default
-    private PaymentSlip payment = PaymentSlip.builder()
-            .paymentStatus(PaymentStatus.PENDENTE)
-            .dueDate(LocalDate.now())
-            .paymentDate(LocalDate.now().plusDays(30))
-            .build();
+    private Payment payment = PaymentSlip.builder()
+        .id(1L)
+        .paymentDate(LocalDate.parse("2021-07-27"))
+        .dueDate(LocalDate.parse("2021-07-27"))
+        .build();
 
     @Builder.Default
     private List<OrderItemDTO> items = Collections.singletonList(OrderItemDTOBuilder.builder().build().toOrderItemDTO());
 
     private List<ProductDTO> products;
 
-    public OrderDTO toOrderDTO(){
-        return new OrderDTO(id, instance, customer, deliveryAddress, payment, items, products);
+    public OrderWithPaymentSlipDTO toOrderDTO(){
+        payment.setPaymentStatus(PaymentStatus.PENDENTE.getCode());
+        return new OrderWithPaymentSlipDTO(id, instance, customer, deliveryAddress, payment, items, products);
     }
 }

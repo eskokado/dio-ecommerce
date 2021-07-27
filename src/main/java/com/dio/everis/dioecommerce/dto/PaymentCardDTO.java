@@ -1,27 +1,25 @@
 package com.dio.everis.dioecommerce.dto;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentCardDTO {
-    private Long id;
-
-    private Integer paymentStatus;
-
+@EqualsAndHashCode(callSuper=false)
+public class PaymentCardDTO extends PaymentDTO {
     @NotNull
     @Min(1)
     @Max(24)
     private Integer parcelAmount;
 
-    private OrderDTO order;
+    @Builder
+    public PaymentCardDTO(Long id, Integer paymentStatus, OrderDTO order, @Min(1) @Max(24) Integer parcelAmount) {
+        super(id, paymentStatus, order);
+        this.parcelAmount = parcelAmount;
+    }
 }

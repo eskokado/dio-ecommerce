@@ -1,27 +1,26 @@
 package com.dio.everis.dioecommerce.dto;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentSlipDTO {
-    private Long id;
-
-    private Integer paymentStatus;
-
+@EqualsAndHashCode(callSuper=false)
+public class PaymentSlipDTO  extends PaymentDTO{
     @NotEmpty
     private String dueDate;
 
     @NotEmpty
     private String paymentDate;
 
-    private OrderDTO order;
+    @Builder
+    public PaymentSlipDTO(Long id, Integer paymentStatus, OrderDTO order, @NotEmpty String dueDate, @NotEmpty String paymentDate) {
+        super(id, paymentStatus, order);
+        this.dueDate = dueDate;
+        this.paymentDate = paymentDate;
+    }
 }

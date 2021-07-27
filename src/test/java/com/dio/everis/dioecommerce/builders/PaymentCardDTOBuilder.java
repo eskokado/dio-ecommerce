@@ -20,6 +20,6 @@ public class PaymentCardDTOBuilder {
     private OrderDTO order = OrderDTOBuilder.builder().build().toOrderDTO();
 
     public PaymentCardDTO toPaymentDTO(){
-        return new PaymentCardDTO(id, paymentStatus, parcelAmount, order);
+        return new PaymentCardDTO(id, paymentStatus, order, parcelAmount);
     }
 }

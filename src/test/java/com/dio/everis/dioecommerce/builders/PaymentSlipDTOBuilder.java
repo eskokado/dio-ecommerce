@@ -23,6 +23,6 @@ public class PaymentSlipDTOBuilder {
     private OrderDTO order = OrderDTOBuilder.builder().build().toOrderDTO();
 
     public PaymentSlipDTO toPaymentDTO(){
-        return new PaymentSlipDTO(id, paymentStatus, dueDate, paymentDate, order);
+        return new PaymentSlipDTO(id, paymentStatus, order, dueDate, paymentDate);
     }
 }

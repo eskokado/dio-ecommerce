@@ -40,6 +40,7 @@ public class Order {
     private Set<OrderItem> items;
 
     public List<Product> getProducts() {
+        if (items ==  null) return new ArrayList<>();
         return getItems().stream().map(OrderItem::getProduct).collect(Collectors.toList());
     }
 }

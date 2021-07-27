@@ -1,9 +1,7 @@
 package com.dio.everis.dioecommerce.entities;
 
 import com.dio.everis.dioecommerce.enums.PaymentStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -13,6 +11,7 @@ import java.io.Serializable;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
+//@RequiredArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "PAYMENTS")
@@ -29,17 +28,18 @@ public abstract class Payment implements Serializable {
     @MapsId
     private Order order;
 
-    public Payment(Long id, PaymentStatus paymentStatus, Order order) {
-        this.id = id;
-        this.paymentStatus = (paymentStatus==null) ? null : paymentStatus.getCode();
-        this.order = order;
-    }
+//    @Builder
+//    public Payment(Long id, PaymentStatus paymentStatus, Order order) {
+//        this.id = id;
+//        this.paymentStatus = (paymentStatus==null) ? null : paymentStatus.getCode();
+//        this.order = order;
+//    }
 
-    public PaymentStatus getPaymentStatus() {
-        return PaymentStatus.toEnum(paymentStatus);
-    }
-
-    public void setPaymentStatus(PaymentStatus paymentStatus) {
-        this.paymentStatus = paymentStatus.getCode();
-    }
+//    public PaymentStatus getPaymentStatus() {
+//        return PaymentStatus.toEnum(paymentStatus);
+//    }
+//
+//    public void setPaymentStatus(PaymentStatus paymentStatus) {
+//        this.paymentStatus = paymentStatus.getCode();
+//    }
 }

@@ -1,9 +1,6 @@
 package com.dio.everis.dioecommerce.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Delegate;
 
 import javax.persistence.EmbeddedId;
